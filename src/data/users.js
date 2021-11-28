@@ -7,7 +7,7 @@ export const users = [
   {
     name: 'Krzysztof Batko',
     attendance: '38%',
-    avarge: '2.3',
+    avarge: '5.0',
   },
   {
     name: 'Patrycja Gonciarz',
@@ -17,7 +17,7 @@ export const users = [
   {
     name: 'Olga Hahn',
     attendance: '38%',
-    avarge: '2.3',
+    avarge: '1.3',
   },
   {
     name: 'Paweł Andrzejewski',
@@ -27,11 +27,6 @@ export const users = [
   {
     name: 'Szymon Knuth',
     attendance: '38%',
-    avarge: '2.3',
-  },
-  {
-    name: 'Krystian Foczpaniak',
-    attendance: '38%',
-    avarge: '2.3',
+    avarge: '6.3',
   },
 ];
