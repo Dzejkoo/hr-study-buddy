@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper } from './UsersListItem.styled';
+import { Wrapper } from './UsersListItem.styles';
 import Button from 'components/atoms/button/Button';
 import { UserAvarage } from 'components/atoms/UserAvarge/UserAvarage';
 import UserInfo from 'components/atoms/UserInfo/UserInfo';
 
-const UsersListItem = ({ userData: { avarge, name, attendance = '0%' } }) => (
-  <Wrapper>
-    <UserAvarage avarge={avarge} />
-    <UserInfo name={name} attendance={attendance} />
-    <Button />
-  </Wrapper>
-);
+const UsersListItem = ({ deleteUser, userData: { avarge, name, attendance = '0%' } }) => {
+  return (
+    <Wrapper>
+      <UserAvarage avarge={avarge} />
+      <UserInfo name={name} attendance={attendance} />
+      <Button onClick={() => deleteUser(name)} />
+    </Wrapper>
+  );
+};
 
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
