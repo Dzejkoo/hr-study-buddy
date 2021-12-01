@@ -15,7 +15,8 @@
         "singleQuote": true,
         "prettier.tabWidth": 2,
         "prettier.useTabs": true,
-        "endOfLine": "auto"
+        "endOfLine": "auto", 
+        "printWidth": 120
       }
     ]
   },

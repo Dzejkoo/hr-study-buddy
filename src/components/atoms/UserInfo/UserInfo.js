@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledUserInfo } from './UserInfo.styled';
+import { StyledUserInfo } from './UserInfo.styles';
 
 export const UserInfo = ({ name, attendance }) => (
   <StyledUserInfo>
