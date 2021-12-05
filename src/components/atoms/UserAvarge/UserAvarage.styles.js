@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { theme } from 'assets/styles/theme';
 
-const handleColorType = (avarage) => {
-  if (avarage.children < 2) {
+const handleColorType = (average) => {
+  if (average.children < 2) {
     return theme.colors.error;
-  } else if (avarage.children < 3) {
+  } else if (average.children < 3) {
     return theme.colors.warning;
-  } else if (avarage.children > 4) {
+  } else if (average.children > 4) {
     return theme.colors.success;
   }
   return theme.colors.grey;
@@ -14,7 +14,7 @@ const handleColorType = (avarage) => {
 
 export const StyledAvarge = styled.div`
   border-radius: 50%;
-  background-color: ${(avarage) => handleColorType(avarage)};
+  background-color: ${(average) => handleColorType(average)};
   height: 34px;
   width: 34px;
   display: flex;
