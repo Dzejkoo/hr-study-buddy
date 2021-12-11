@@ -5,7 +5,7 @@ const StyledStudyBuddyLogo = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.darkGrey};
 
-  p {
+  h1 {
     width: 60%;
     margin-left: auto;
     padding: 10px 10px;
@@ -20,7 +20,7 @@ const StyledStudyBuddyLogo = styled.div`
 const StudyBuddyLogo = () => {
   return (
     <StyledStudyBuddyLogo>
-      <p>Study Buddy</p>
+      <h1>Study Buddy</h1>
     </StyledStudyBuddyLogo>
   );
 };
