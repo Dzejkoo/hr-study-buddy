@@ -1,12 +1,16 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledList, StyledTitle } from './UsersList.styles';
+import { Title } from 'components/atoms/Title/Title';
+import { StyledList } from './UsersList.styles';
+import { UserShape } from 'types';
+import { UsersContext } from 'providers/UsersProvider';
 
-const UsersList = ({ users, deleteUser, isLoading }) => {
+const UsersList = () => {
+  const { users, deleteUser, isLoading } = useContext(UsersContext);
   return (
     <>
-      <StyledTitle>{isLoading ? 'Loading...' : 'Student List'}</StyledTitle>
+      <Title>{isLoading ? 'Loading...' : 'Student List'}</Title>
       <StyledList>
         {users.map((userData, i) => (
           <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
@@ -14,6 +18,11 @@ const UsersList = ({ users, deleteUser, isLoading }) => {
       </StyledList>
     </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
+  deleteUser: PropTypes.func,
 };
 
 export default UsersList;
