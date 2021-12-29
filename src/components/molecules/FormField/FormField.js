@@ -19,7 +19,7 @@ const FormField = ({ label, name, id, type = 'text', ...props }) => {
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
 
-      <Input name={name} id={id} type={type} {...props}></Input>
+      <Input name={name} id={id} type={type} {...props} data-testid={label}></Input>
     </Wrapper>
   );
 };
