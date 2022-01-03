@@ -1,6 +1,6 @@
 import React from 'react';
 import FormField from './FormField';
-import { renderWithProviders } from 'helpers/renderWithThemeProvider';
+import { renderWithProviders } from 'helpers/renderWithProviders';
 
 describe('Input with button', () => {
   it('Renders the components', () => {

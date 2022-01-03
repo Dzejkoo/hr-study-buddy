@@ -1,31 +1,60 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useReducer } from 'react';
 import FormField from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { Title } from 'components/atoms/Title/Title';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.styles';
 import { UsersContext } from 'providers/UsersProvider';
 
+//Started object values
 const initialFormState = {
   name: '',
   attendance: '',
   average: '',
 };
 
+//Usereducer similar method like useState but in reducer we can change more information
+const reducer = (state, action) => {
+  //State and action - two attributesm STATE
+  console.log(action);
+
+  switch (action.type) {
+    case 'INPUT CHANGE':
+      //Set values from input
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    case 'CLEAR VALUES':
+      return initialFormState;
+    default:
+      return state;
+  }
+};
+
 const AddUser = () => {
-  const [formValues, setFormValues] = useState(initialFormState);
+  //Hook
+  const [formValues, dispatch] = useReducer(reducer, initialFormState);
+
+  //"Import" function by useContext from another file
   const { handleAddUser } = useContext(UsersContext);
 
   const handleInputChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
+    //Download new values from input and set them to formValues
+    dispatch({
+      type: 'INPUT CHANGE',
+      field: e.target.name,
+      value: e.target.value,
     });
   };
 
   const handleSubmitUser = (e) => {
     e.preventDefault();
+
+    //Adding new values to our users list
     handleAddUser(formValues);
-    setFormValues(initialFormState);
+
+    //set Initial form values - clear input
+    dispatch({ type: 'CLEAR VALUES' });
   };
 
   return (

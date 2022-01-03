@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithProviders } from 'helpers/renderWithThemeProvider';
+import { renderWithProviders } from 'helpers/renderWithProviders';
 import { screen, fireEvent } from '@testing-library/react';
 import AddUser from './AddUser';
 import Dashboard from './Dashboard';
@@ -19,6 +19,8 @@ describe('Input with button', () => {
     fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '55%' } });
     fireEvent.change(screen.getByTestId('Average'), { target: { value: '2.8' } });
     fireEvent.click(screen.getByText('Add'));
+
+    //Checking if your shot to input was right
     screen.getByText('Grażyna');
   });
 });
