@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MainTemplate } from 'components/templates/MainTemplate';
+import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
 import { Wrapper } from './Root.styles';
 import Dashboard from './Dashboard';
 import AddUser from './AddUser';
