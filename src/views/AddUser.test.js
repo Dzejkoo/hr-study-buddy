@@ -5,7 +5,7 @@ import AddUser from './AddUser';
 import Dashboard from './Dashboard';
 
 describe('Input with button', () => {
-  it('Renders the components', () => {
+  it('adds new user to the list', () => {
     //Render element with extensions providers
     renderWithProviders(
       <>
@@ -18,6 +18,7 @@ describe('Input with button', () => {
     fireEvent.change(screen.getByTestId('Name'), { target: { value: 'Grażyna' } });
     fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '55%' } });
     fireEvent.change(screen.getByTestId('Average'), { target: { value: '2.8' } });
+    fireEvent.click(screen.getByText('Consent'));
     fireEvent.click(screen.getByText('Add'));
 
     //Checking if your shot to input was right
