@@ -5,7 +5,7 @@ export const Button = styled.button`
   padding: ${({ isBig }) => (isBig ? '5px 30px' : '7px 20px')};
   font-size: ${({ isBig, theme: { fontSize } }) => (isBig ? fontSize.m : fontSize.s)};
   background-color: ${({ theme }) => theme.colors.darkPurple};
-  border-radius: 20px;
+  border-radius: 8px;
   border: none;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkGrey};

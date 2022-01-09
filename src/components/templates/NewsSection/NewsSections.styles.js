@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px 45px;
+  overflow-y: scroll;
 `;
 
 export const NewsSectionHeader = styled.h2`
@@ -25,6 +26,9 @@ export const AricleWrapper = styled(ViewWrapper)`
   border-radius: 12px;
   max-width: unset;
   color: ${({ theme }) => theme.colors.darkGrey};
+  p {
+    line-height: 1.6;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -35,5 +39,15 @@ export const TitleWrapper = styled.div`
   p {
     margin: 0;
     font-size: ${({ theme }) => theme.fontSize.l};
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  img {
+    max-width: 200px;
+    object-fit: cover;
+    margin-left: 25px;
   }
 `;

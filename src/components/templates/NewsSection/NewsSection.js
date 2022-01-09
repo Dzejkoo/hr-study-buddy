@@ -1,22 +1,72 @@
 import { Button } from 'components/atoms/Button/Button';
-import React from 'react';
-import { Wrapper, NewsSectionHeader, AricleWrapper, TitleWrapper } from './NewsSections.styles';
+import React, { useState, useEffect } from 'react';
+import { Wrapper, NewsSectionHeader, AricleWrapper, TitleWrapper, ContentWrapper } from './NewsSections.styles';
+import axios from 'axios';
+
+//GraphQl structure
+export const query = `
+          {
+            allArticles{
+              id
+              title
+              category
+              content
+              image{
+                url	
+              }
+            }
+          }
+        `;
+
+//API key from DatoCMS
+const API_TOKEN = '6544a28b58bca33b3618300fb002a9';
 
 const NewsSection = () => {
+  //hook that give us set article from Data CMS
+  const [articles, setArticle] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    axios
+      .post(
+        'https://graphql.datocms.com/',
+        {
+          query: query,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${API_TOKEN}`,
+          },
+        }
+      )
+      .then(({ data: { data } }) => {
+        setArticle(data.allArticles);
+      })
+      .catch(() => {
+        setError(`Sorry, we couldn't load article for you`);
+      });
+  }, []);
+
   return (
     <Wrapper>
       <NewsSectionHeader>University news feed</NewsSectionHeader>
-      <AricleWrapper>
-        <TitleWrapper>
-          <h3>Lotem Ipsum</h3>
-          <p>Tech news</p>
-        </TitleWrapper>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id purus lorem. Quisque dictum in diam at tristique. Sed quis lacinia nisl. Pellentesque felis turpis,
-          rutrum cursus nibh eu, vehicula consequat nisi. Etiam leo quam, venenatis eu metus quis, fringilla molestie nisl.
-        </p>
-        <Button isBig>Read more</Button>
-      </AricleWrapper>
+      {articles.length > 0 && !error ? (
+        articles.map(({ id, title, category, content, image = null }) => (
+          <AricleWrapper key={id}>
+            <TitleWrapper>
+              <h3>{title}</h3>
+              <p>{category}</p>
+            </TitleWrapper>
+            <ContentWrapper>
+              <p>{content}</p>
+              {image ? <img src={image.url} alt="article" /> : null}
+            </ContentWrapper>
+            <Button isBig>Read more</Button>
+          </AricleWrapper>
+        ))
+      ) : (
+        <NewsSectionHeader> {error ? error : 'Loading...'}</NewsSectionHeader>
+      )}
     </Wrapper>
   );
 };
