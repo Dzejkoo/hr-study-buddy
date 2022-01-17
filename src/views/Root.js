@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/globalStyle';
 import { theme } from 'assets/styles/theme';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
 import { Wrapper } from './Root.styles';
 import Dashboard from './Dashboard';
@@ -18,8 +18,9 @@ const Root = () => {
           <UsersProvider>
             <Wrapper>
               <Routes>
+                <Route exact path="/" element={<Navigate to="/group" />} />
                 <Route path="/add-user" element={<AddUser />} />
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/group/:id?" element={<Dashboard />} />
               </Routes>
             </Wrapper>
           </UsersProvider>
