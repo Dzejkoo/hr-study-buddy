@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { users as usersData } from 'data/users';
+import React, { useState } from 'react';
 
 export const UsersContext = React.createContext({
-  users: [],
   handleAddUser: () => {},
   deleteUser: () => {},
 });
 
-const mockAPI = (succses) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (succses) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'error' });
-      }
-    }, 2000);
-  });
-};
-
 const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const [isLoading, setLoadingState] = useState([]);
+  // const [isLoading, setLoadingState] = useState([]);
 
   const handleAddUser = (values) => {
     const newUser = {
@@ -32,16 +18,6 @@ const UsersProvider = ({ children }) => {
 
     setUsers([newUser, ...users]);
   };
-
-  useEffect(() => {
-    setLoadingState(true);
-    mockAPI(true)
-      .then((data) => {
-        setLoadingState(false);
-        setUsers(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const deleteUser = (name) => {
     const fitleredUsers = users.filter((user) => user.name !== name);
@@ -54,7 +30,6 @@ const UsersProvider = ({ children }) => {
         users,
         handleAddUser,
         deleteUser,
-        isLoading,
       }}
     >
       {children}

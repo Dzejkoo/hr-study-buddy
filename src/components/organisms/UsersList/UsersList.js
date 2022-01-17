@@ -6,11 +6,11 @@ import { StyledList } from './UsersList.styles';
 import { UserShape } from 'types';
 import { UsersContext } from 'providers/UsersProvider';
 
-const UsersList = () => {
-  const { users, deleteUser, isLoading } = useContext(UsersContext);
+const UsersList = ({ users = [] }) => {
+  const { deleteUser } = useContext(UsersContext);
   return (
     <>
-      <Title>{isLoading ? 'Loading...' : 'Student List'}</Title>
+      <Title>Student List</Title>
       <StyledList>
         {users.map((userData, i) => (
           <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
