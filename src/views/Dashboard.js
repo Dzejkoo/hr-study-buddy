@@ -8,7 +8,7 @@ import UsersList from 'components/organisms/UsersList/UsersList';
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
   const [groups, setGroups] = useState([]);
-
+  console.log(groups[0]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get(`/students/${id || groups[0]}`)
+      .get(`/students/${id}`)
       .then(({ data }) => {
         setStudents(data.students);
       })

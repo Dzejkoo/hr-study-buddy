@@ -20,7 +20,7 @@ const Root = () => {
               <Routes>
                 <Route exact path="/" element={<Navigate to="/group" />} />
                 <Route path="/add-user" element={<AddUser />} />
-                <Route path="/group/:id?" element={<Dashboard />} />
+                <Route path="/group/:id" element={<Dashboard />} />
               </Routes>
             </Wrapper>
           </UsersProvider>
